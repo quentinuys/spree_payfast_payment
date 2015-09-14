@@ -17,10 +17,12 @@ module Spree
 
     def assign_params
       @params = params
-      puts "#####################################################PARAMS########################################################"
-      puts @params
-      puts "#####################################################END PARAMS######################################################"
-      flash.notice = Spree.t(:order_processed_successfully)
+      if @params.empty?
+        flash.notice = "The params is empty"
+      else
+        flash.notice = "Params: #{@params}"
+      end
+
       flash['order_completed'] = true
       redirect_to '/'
     end
