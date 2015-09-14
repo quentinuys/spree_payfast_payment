@@ -20,6 +20,9 @@ module Spree
       puts "#####################################################PARAMS########################################################"
       puts @params
       puts "#####################################################END PARAMS######################################################"
+      flash.notice = Spree.t(:order_processed_successfully)
+      flash['order_completed'] = true
+      redirect_to '/'
     end
 
     private
