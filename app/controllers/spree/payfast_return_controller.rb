@@ -4,6 +4,7 @@ module Spree
     before_filter :assign_params
 
     def success
+      redirect_to checkout_state_path('complete')
       success_payment
     end
 
