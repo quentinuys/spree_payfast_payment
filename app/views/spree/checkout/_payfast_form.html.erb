@@ -1,0 +1,14 @@
+
+  <%- unless @payment_form_parameters.nil? %>
+    <%- $url_parameters = "" -%>
+    <%- @payment_form_parameters.each do |key,value| %>
+      <%- $url_parameters += "#{key}=#{value}&" %>
+    <% end %>
+    <%- $url_parameters = $url_parameters.chomp('&') -%>
+  <% end -%>
+<li class="list-group-item">
+  Secure Credit Card, EFT payments with payfast<br/> 
+  <%= form_tag("http://#{ENV['PAYFAST_URL']}/eng/process?#{$url_parameters}") do %>
+    <%= image_submit_tag("https://www.payfast.co.za/images/buttons/paynow_basic_logo.gif") -%>
+  <% end -%>
+</li>

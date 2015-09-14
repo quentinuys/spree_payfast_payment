@@ -1,0 +1,14 @@
+<script>
+  //$('#checkout_form_payment').remove();
+  $(".panel-body .list-group-item:contains('PayFast')").remove();
+  $(".panel-body .list-group-item:contains('Paypal')").remove();
+  $('#payment-method-fields').append("<li id='paypal_field' class='list-group-item'></li>");
+  $("#payment-methods fieldset:contains('Paypal')").appendTo('#paypal_field');
+  $('#payment-method-fields').append("<%= j render(:partial => 'payfast_form', :locals => { :payment_form_parameters => @payment_form_parameters }) %>");
+
+  $("#payment-methods").remove();
+  // $("#checkout_form_payment input:not([type=image],[type=button],[type=submit],[type=radio])").each(function() {
+  //   $(this).remove();
+  // });
+  // $('#checkout_form_payment').attr('action', 'http://sandbox.payfast.co.za/eng/process'); 
+</script>
