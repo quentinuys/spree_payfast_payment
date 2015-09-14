@@ -4,7 +4,6 @@ module Spree
     before_filter :assign_params
 
     def success
-      redirect_to checkout_state_path('complete')
       success_payment
     end
 
@@ -21,6 +20,7 @@ module Spree
       puts "#####################################################PARAMS########################################################"
       puts @params
       puts "#####################################################END PARAMS######################################################"
+      redirect_to checkout_state_path('complete')
       @order_id = @params[:m_payment_id]
       @order = Spree::Order.find(@order_id)
     end
