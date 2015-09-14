@@ -24,7 +24,7 @@ module Spree
       @order = Spree::Order.find(@order_id)
     end
 
-  private
+    private
 
     def success_payment
       @order.payments.create!({
