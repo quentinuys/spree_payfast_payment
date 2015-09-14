@@ -48,7 +48,7 @@ private
 
   def cancel_payment
     flash[:notice] = Spree.t('flash.cancel', scope: 'paypal')
-    redirect_to checkout_state_path(@order.state, cancel_token: @params[:m_payment_id]
+    redirect_to checkout_state_path(@order.state, cancel_token: @params[:m_payment_id])
   end
 
   def payment_method
