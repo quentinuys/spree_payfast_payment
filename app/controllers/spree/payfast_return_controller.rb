@@ -3,13 +3,16 @@ module Spree
 
     def success
       respond_valid
+      assign_params
     end
 
     def notice
+      respond_valid
       assign_params
     end
 
     def cancel
+      respond_valid
       assign_params
     end
 
@@ -26,7 +29,7 @@ module Spree
     end
 
     def respond_valid
-      render nothing: true, status: 200, content_type: "text/html"
+      head 200
     end
 
     private
