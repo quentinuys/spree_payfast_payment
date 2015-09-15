@@ -64,7 +64,7 @@
             merchant_key: ENV['MERCHANT_KEY'],
             return_url: ENV['SUCCESS_PATH'], #"localhost:3000/payfast_success",
             cancel_url: ENV['CANCEL_PATH'], #"localhost:3000/payfast_cancel",
-            notify_url: ENV['FAILURE_PATH'], #"localhost:3000/payfast_failure",
+            notify_url: ENV['NOTICE_PATH'], #"localhost:3000/payfast_notice",
             name_first: @order.ship_address.first_name,
             name_last: @order.ship_address.last_name,
             email_address: @order.email,

@@ -1,18 +1,16 @@
 module Spree
   class PayfastReturnController < Spree::StoreController
 
-    before_filter :respond_valid, :assign_params
-
     def success
-      #success_payment
+      respond_valid
     end
 
-    def failure
-      #failure_payment
+    def notice
+      assign_params
     end
 
     def cancel
-      #cancel_payment
+      assign_params
     end
 
     def assign_params
@@ -28,7 +26,7 @@ module Spree
     end
 
     def respond_valid
-      render status: :ok
+      render nothing: true, status: 200, content_type: "text/html"
     end
 
     private
@@ -47,10 +45,6 @@ module Spree
       else
         redirect_to checkout_state_path(@order.state)
       end
-    end
-
-    def failure_payment
-      
     end
 
     def cancel_payment
