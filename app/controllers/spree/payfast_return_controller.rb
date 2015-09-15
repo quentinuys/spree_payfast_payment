@@ -2,34 +2,25 @@ module Spree
   class PayfastReturnController < Spree::StoreController
 
     def success
-      respond_valid
-      assign_params
+      flash.notice = "Thank you, order num: #{session[:order_id]}. your payment has been made and your order is processed."
+      flash['order_completed'] = true
+      redirect_to '/cart'
     end
 
     def notice
-      respond_valid
+      head :ok
       assign_params
+      create_insert
     end
 
     def cancel
-      respond_valid
       assign_params
+      flash.notice = "Not happy with the payment system? Try another."
+      redirect_to '/checkout/payment'
     end
 
     def assign_params
       @params = params
-      if @params.empty?
-        flash.notice = "The params is empty"
-      else
-        flash.notice = "Params: #{@params}, Response: #{response.body}, Request: #{request.raw_post}"
-      end
-
-      flash['order_completed'] = true
-      redirect_to '/'
-    end
-
-    def respond_valid
-      head 200
     end
 
     private
@@ -57,6 +48,12 @@ module Spree
 
     def payment_method
       Spree::PaymentMethod.find(@params[:m_payment_id])
+    end
+
+    def create_insert
+       @order = Spree::Order.find(session[:order_id])
+       @order.special_instructions = @params
+       @order.save
     end
   end
 end
