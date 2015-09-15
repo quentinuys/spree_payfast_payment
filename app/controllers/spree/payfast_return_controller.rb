@@ -20,7 +20,7 @@ module Spree
       if @params.empty?
         flash.notice = "The params is empty"
       else
-        flash.notice = "Params: #{@params}, Response: #{response.body}, Request: #{request.body.string}"
+        flash.notice = "Params: #{@params}, Response: #{response.body}, Request: #{request.raw_post}"
       end
 
       flash['order_completed'] = true
