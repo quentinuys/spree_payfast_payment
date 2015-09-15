@@ -64,7 +64,7 @@
             merchant_key: ENV['MERCHANT_KEY'],
             return_url: ENV['SUCCESS_PATH'], #"localhost:3000/payfast_success",
             cancel_url: ENV['CANCEL_PATH'], #"localhost:3000/payfast_cancel",
-            notify_url: ENV['FAILURE_PATH'], #"localhost:3000/payfast_failure",
+            notify_url: ENV['NOTICE_PATH'], #"localhost:3000/payfast_notice",
             name_first: @order.ship_address.first_name,
             name_last: @order.ship_address.last_name,
             email_address: @order.email,
@@ -91,14 +91,14 @@
       <% end %>
     </ul>
 
-    <p class='field' data-hook='coupon_code'>
+<!--     <p class='field' data-hook='coupon_code'>
       <%= form.label :coupon_code %><br />
       <%= form.text_field :coupon_code, :class => 'form-control' %>
-    </p>
+    </p> -->
   </div>
 </div>
 
-<div class="well text-right form-buttons" data-hook="buttons">
+<!-- <div class="well text-right form-buttons" data-hook="buttons">
   <%= submit_tag Spree.t(:save_and_continue), class: 'btn btn-lg btn-success primary' %>
   <script>Spree.disableSaveOnClick();</script>
-</div>
+</div> -->

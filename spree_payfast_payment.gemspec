@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.description = 'Payfast Payment Gateway'
   s.required_ruby_version = '>= 2.0.0'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
+  s.author    = 'Quentin'
+  s.email     = 'quentin@zook.co.za'
   # s.homepage  = 'http://www.spreecommerce.com'
 
   #s.files       = `git ls-files`.split("\n")
@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 3.0.4'
-
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner'

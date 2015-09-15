@@ -186,49 +186,6 @@ module Spree
       return unless address_params
       address_params[:zipcode] = address_params[:zipcode].strip if address_params[:zipcode]
     end
-
-    def url_parameters
-    {
-      merchant_id: ENV['MERCHANT_ID'],
-      merchant_key: ENV['MERCHANT_KEY'],
-      return_url: return_url,
-      cancel_url: cancel_url,
-      notify_url: notify_url,
-      name_first: @name_first,
-      name_last: @name_last,
-      email_address: @email_address,
-      m_payment_id: @m_payment_id,
-      amount: @amount,
-      item_name: @item_name,
-      item_description: @item_description,
-      custom_int1: @custom_int,
-      custom_str1: @custom_str
-    }
-    end
-
-    def return_url
-      "http://www.zook.co.za/checkout/return"
-    end
-
-    def cancel_url
-      "http://www.zook.co.za/checkout/return"
-    end
-
-    def notify_url
-      "http://www.zook.co.za/checkout/return"
-    end
-
-    def paygate_url
-      "http://www.payfast.co.za/eng/process?#{payfast_secure_url}"
-    end
-
-    def paygate_test_url
-      "http://sandbox.payfast.co.za/eng/process?#{payfast_secure_url}"
-    end
-
-    def plain_url
-      "http://sandbox.payfast.co.za/eng/process"
-    end
     
   end
 end
