@@ -1,5 +1,5 @@
 Spree::Core::Engine.routes.draw do
-  post '/payfast_success' => 'payfast_return#success'
-  post '/payfast_failure' => 'payfast_return#failure'
-  post '/payfast_cancel'  => 'payfast_return#cancel'
+  get '/payfast_success' => 'payfast_return#success'
+  get '/payfast_failure' => 'payfast_return#failure'
+  get '/payfast_cancel'  => 'payfast_return#cancel'
 end
