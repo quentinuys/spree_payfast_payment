@@ -8,6 +8,7 @@ module Spree
     end
 
     def notice
+      logger.debug "Notice Method triggered..........."
       assign_params
       create_insert
       head :ok
@@ -20,6 +21,7 @@ module Spree
     end
 
     def assign_params
+      logger.debug "Assigning params: #{params}..........."
       @params = params
     end
 
@@ -51,9 +53,12 @@ module Spree
     end
 
     def create_insert
-       @order = Spree::Order.find(@params[:m_payment_id])
-       @order.special_instructions = @params[:item_description]
-       @order.save!
+      logger.debug "Creating Insert......................."
+      @order = Spree::Order.find(@params[:m_payment_id])
+      @order.special_instructions = @params[:item_description]
+      if @order.save!
+        logger.debug "Order update saved.............."
+      end
     end
   end
 end
