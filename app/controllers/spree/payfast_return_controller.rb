@@ -51,9 +51,9 @@ module Spree
     end
 
     def create_insert
-       @order = Spree::Order.find(session[:order_id])
-       @order.special_instructions = @params
-       @order.save
+       @order = Spree::Order.find(@params[:m_payment_id])
+       @order.special_instructions = @params[:item_description]
+       @order.save!
     end
   end
 end
