@@ -1,7 +1,7 @@
 module Spree
   class PayfastReturnController < Spree::StoreController
 
-    before_filter :assign_params
+    before_filter :respond_valid, :assign_params
 
     def success
       #success_payment
@@ -25,6 +25,10 @@ module Spree
 
       flash['order_completed'] = true
       redirect_to '/'
+    end
+
+    def respond_valid
+      render status: :ok
     end
 
     private
