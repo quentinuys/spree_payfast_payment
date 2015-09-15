@@ -8,9 +8,9 @@ module Spree
     end
 
     def notice
-      head :ok
       assign_params
       create_insert
+      head :ok
     end
 
     def cancel
