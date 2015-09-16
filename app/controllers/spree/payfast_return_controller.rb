@@ -68,11 +68,11 @@ module Spree
 
     def signature_url
       logger.debug "Get signature url......................."
-      signature_url = ""
+      response_signature_url = ""
       @params.each do |key, val|
-        signature_url += "#{key}=#{val}&" unless key == 'signature'
+        response_signature_url += "#{key}=#{val}&" unless key == 'signature'
       end
-      signature_url.chomp('&')
+      response_signature_url.chomp('&')
     end
 
     def pass_phrase

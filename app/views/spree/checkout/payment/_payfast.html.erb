@@ -1,7 +1,9 @@
 <script>
   //$('#checkout_form_payment').remove();
   $(".panel-body .list-group-item:contains('PayFast')").remove();
+  $(".panel-body .list-group-item:contains('Payfast')").remove();
   $(".panel-body .list-group-item:contains('Paypal')").remove();
+  $("div .form-buttons").remove();
   $('#payment-method-fields').append("<li id='paypal_field' class='list-group-item'></li>");
   $("#payment-methods fieldset:contains('Paypal')").appendTo('#paypal_field');
   $('#payment-method-fields').append("<%= j render(:partial => 'payfast_form', :locals => { :payment_form_parameters => @payment_form_parameters }) %>");
