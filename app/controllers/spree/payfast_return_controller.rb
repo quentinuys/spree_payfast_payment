@@ -1,6 +1,7 @@
 module Spree
   class PayfastReturnController < Spree::StoreController
-
+    skip_before_filter  :verify_authenticity_token
+    
     def success
       flash.notice = "Thank you, order num: #{session[:order_id]}. your payment has been made and your order is processed."
       flash['order_completed'] = true
