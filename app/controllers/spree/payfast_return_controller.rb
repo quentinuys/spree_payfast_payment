@@ -48,7 +48,9 @@ module Spree
     def valid_signature?
       logger.debug "Validating Signature......................."
       @signature = CGI::escape(signature_url)
+      logger.debug "Got Signature URL...#{@signature}...................."
       @md5_encode = Digest::MD5.hexdigest(@signature)
+      logger.debug "Got Encoded URL...#{@md5_encode}...................."
       @md5_encode == @params['signature']
     end
 
