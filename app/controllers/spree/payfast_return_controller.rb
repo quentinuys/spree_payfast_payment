@@ -5,10 +5,10 @@ module Spree
     
     def success
       @order = current_order
-      if @order.complete?
-        flash.notice = "Thank you, Order Num: #{@order.id}. Your payment has been made and your order is being processed."
+      if @order.nil?
+        flash.notice = "Thank you. Your payment has been received and your order is being processed."
         flash['order_completed'] = true
-        redirect_to completion_route(@order)
+        redirect_to '/'
       else
         flash.notice = "There has been an error with your payment."
         redirect_to checkout_state_path(@order.state)
