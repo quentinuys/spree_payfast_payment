@@ -89,13 +89,18 @@ module Spree
 
     def success_payment!
       logger.debug "Successful Payment......................."
-      while @order.next; end
+      
 
       @payment = @order.payments.create!({
         amount: @order.total,
         payment_method: payment_method
       })
 
+      while @order.next; end
+
+      logger.debug "Payment. Created......................"
+
+      logger.debug "Order status.....#{@order.state}................."
       if @order.complete?
         logger.debug "Order is complete.............."
         flash.notice = Spree.t(:order_processed_successfully)
