@@ -55,8 +55,8 @@ module Spree
     end
 
     def valid_amount?
-      logger.debug "Validate amount......................."
-      @params['amount_gross'] == @order.total.to_f.to_s
+      logger.debug "Validate amount..........#{@order.total.to_f}............."
+      @params['amount_gross'].to_f === @order.total.to_f
     end
 
     def valid_host?
