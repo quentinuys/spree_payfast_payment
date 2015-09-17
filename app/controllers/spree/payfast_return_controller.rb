@@ -4,7 +4,7 @@ module Spree
     skip_before_filter  :verify_authenticity_token
     
     def success
-      @order = Spree::Order.find(session[:order_id])
+      @order = current_order
       if @order.complete?
         flash.notice = "Thank you, Order Num: #{@order.id}. Your payment has been made and your order is being processed."
         flash['order_completed'] = true
@@ -37,7 +37,7 @@ module Spree
     end
 
     def valid?
-      successful_status? && valid_signature? && valid_amount? && valid_host? && not_processed?
+      successful_status? && valid_amount? && valid_host? && not_processed? # && valid_signature? 
     end
 
     def successful_status?
@@ -47,7 +47,7 @@ module Spree
 
     def valid_signature?
       logger.debug "Validating Signature......................."
-      @signature = CGI::escape(signature_url)
+      @signature = signature_url
       logger.debug "Got Signature URL...#{@signature}...................."
       @md5_encode = Digest::MD5.hexdigest(@signature)
       logger.debug "Got Encoded URL...#{@md5_encode}...................."
@@ -56,12 +56,13 @@ module Spree
 
     def valid_amount?
       logger.debug "Validate amount......................."
-      @params['amount_gross'] == @order.total
+      @params['amount_gross'] == @order.total.to_f.to_s
     end
 
     def valid_host?
-      valid_hosts = %W{'www.payfast.co.za' 'sandbox.payfast.co.za' 'w1w.payfast.co.za' 'w2w.payfast.co.za'}
-      valid_hosts.include?(request.host)
+      logger.debug "Validate host......................."
+      valid_hosts = %W{'www.payfast.co.za' 'sandbox.payfast.co.za' 'w1w.payfast.co.za' 'w2w.payfast.co.za' 'localhost'}
+      valid_hosts.rindex("'#{request.host}'")
     end
 
     def not_processed?
@@ -70,11 +71,11 @@ module Spree
 
     def signature_url
       logger.debug "Get signature url......................."
-      response_signature_url = ""
-      @params.each do |key, val|
-        response_signature_url += "#{key}=#{val}&" unless key == 'signature'
-      end
-      response_signature_url.chomp('&')
+      map_data = @params.map do |key, val|
+        val = "" if val.nil?
+        "#{key}=#{CGI.escape(val)}" unless key == 'signature'
+      end.compact.join('&')
+      Digest::MD5.hexdigest(map_data)
     end
 
     def pass_phrase
