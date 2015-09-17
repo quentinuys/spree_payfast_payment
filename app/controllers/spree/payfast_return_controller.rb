@@ -60,7 +60,7 @@ module Spree
     end
 
     def valid_host?
-      logger.debug "Validate host......................."
+      logger.debug "Validate host.........#{request.host}.............."
       valid_hosts = %W{'www.payfast.co.za' 'sandbox.payfast.co.za' 'w1w.payfast.co.za' 'w2w.payfast.co.za' 'localhost'}
       valid_hosts.rindex("'#{request.host}'")
     end
