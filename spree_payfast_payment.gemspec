@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_payfast_payment'
-  s.version     = '3.0.6'
+  s.version     = '3.0.7'
   s.summary     = 'Payfast Payment Gateway'
   s.description = 'Payfast Payment Gateway'
   s.required_ruby_version = '>= 2.0.0'

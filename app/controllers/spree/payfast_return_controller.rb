@@ -10,6 +10,8 @@ module Spree
         flash.notice = "Thank you. Your payment has been received and your order is being processed."
         flash['order_completed'] = true
         redirect_to '/'
+      elsif !@order.paid? && @order.state == "payment"
+        success_payment!
       else
         PaymentMailer.payment_failed("There has been an error on the current order number #{@order.number}. it should be nil. ").deliver_now!
         flash.notice = "There has been an error with your payment."
